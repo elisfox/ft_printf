@@ -17,7 +17,7 @@ char	*ft_strtrim(char const *s)
 	int		i;
 	int		j;
 	int		n;
-	char		*str;
+	char	*str;
 
 	if (!s)
 		return (NULL);

@@ -1,44 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcolossu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/11 12:58:39 by bcolossu          #+#    #+#             */
+/*   Updated: 2020/06/11 20:25:25 by bcolossu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
-void ft_head(va_list *ap, const char *format, t_flags *t)
+void	format_step(va_list ap, const char *f, t_flags *t)
 {
-    t->step++;
-    //reset_struct(t);
-    ft_analysis(format, t, ap);
-    //t->step++;
+	while (f[t->step] != '\0')
+	{
+		if (f[t->step] != '%' && f[t->step])
+			text(f, t);
+		else if (f[t->step] == '%' && ft_strchr(ALLSYMBOLS, f[t->step + 1]))
+		{
+			t->step++;
+			analysis(f, t, ap);
+			reset_struct(t);
+		}
+		if (f[t->step] == '\0')
+			return ;
+		t->step++;
+	}
 }
 
-int ft_format(va_list *ap, const char *format, t_flags *t)
+int		ft_printf(const char *format, ...)
 {
-    while (format[t->step] != '\0')
-    {
-        if (format[t->step] != '%' && format[t->step])
-            ft_text(format, t);
-        else if(format[t->step] == '%' && ft_strchr(ALLSYMBOLS, format[t->step + 1]))
-        {
-            bzero_struct(t);
-            ft_head(ap, format, t);
-        }
-        if(format[t->step] == '\0')
-            return(1);
-        t->step++;
-        
-    }
-    return (0);
-}
+	t_flags	*t;
+	va_list	ap;
+	int		result;
 
-int ft_printf(const char *format, ...)
-{
-    t_flags *t;
-    va_list ap;
-    int result;
-    
-    if(!(t = malloc(sizeof(t))))
-        return(-1);
-    va_start(ap, format);
-    ft_format(&ap, format, t);
-    result = t->pf_return;
-    free(t);
-    va_end(ap);
-    return (result);
+	result = 0;
+	if (!(t = (t_flags *)malloc(sizeof(t_flags))))
+		return (result);
+	bzero_struct(t);
+	va_start(ap, format);
+	va_copy(t->copy, ap);
+	format_step(ap, format, t);
+	va_end(ap);
+	result = t->pf_return;
+	free(t);
+	return (result);
 }

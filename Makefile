@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bcolossu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/11 20:49:09 by bcolossu          #+#    #+#              #
-#    Updated: 2019/11/21 19:42:55 by rczarfun         ###   ########.fr        #
+#    Created: 2020/05/11 20:49:09 by bcolossu          #+#    #+#              #
+#    Updated: 2020/05/21 19:42:55 by bcolossu         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -15,8 +15,8 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = libftprintf.a
 
-SRC =  ft_printf.c bzero_struct.c ft_int.c ft_output.c ft_analysis.c ft_char.c\
-ft_unsigned_n.c modifers.c
+SRC =  ft_printf.c bzero_struct.c digit_p.c digit_p2.c output.c analysis.c char.c\
+unsigned_n.c modifers.c oxb.c char2.c bonus.c
 
 OBJ = $(SRC:.c=.o)
 

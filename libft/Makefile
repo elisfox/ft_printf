@@ -14,7 +14,14 @@
 
 NAME = libft.a
 
-SRCS =	ft_getnbr.c\
+SRCS =	ft_strjoin_f.c\
+		ft_itoa_base.c\
+		ft_ftoa.c\
+		ft_ftoa_long.c\
+		ft_itoa_long.c\
+		ft_itoa_longlong.c\
+		ft_swap.c\
+		ft_getnbr.c\
 		ft_free_array.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
@@ -92,7 +99,7 @@ $(NAME): $(OBJS)
 $(OBJS): %.o : %.c libft.h get_next_line.h
 		gcc -Wall -Wextra -Werror -I . -c $<
 
-fclean: clean
+fclean:	clean
 		/bin/rm -f libft.a
 
 clean: 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_unsigned.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jojoseph <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,10 +28,10 @@ static size_t	ft_len(size_t n)
 	return (len);
 }
 
-char		*ft_itoa_unsigned(size_t n)
+char			*ft_itoa_unsigned(size_t n)
 {
 	char	*str;
-	size_t		len;
+	size_t	len;
 
 	len = ft_len(n);
 	str = ft_strnew(len);
